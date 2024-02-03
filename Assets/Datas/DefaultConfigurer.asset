@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33749868012d6fc468a4eebe5ca5de6a, type: 3}
   m_Name: DefaultConfigurer
   m_EditorClassIdentifier: 
+  <Configs>k__BackingField:
+    keyData:
+    - _typeString: ConfigUnityEntitiesContainer, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GridBase : MonoBehaviour
+public class GridBase : UnityEntity_Base
 {
     
 }

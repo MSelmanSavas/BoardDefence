@@ -1,3 +1,6 @@
+#if UNITY_EDITOR
+using System.Reflection;
+#endif
 using UnityEngine;
 using UsefulDataTypes;
 
@@ -12,6 +15,9 @@ public class Configurer : ScriptableObject
     public ConfigReferencesDictionary Configs { get; private set; }
 
     ConfigBase _lastAccessedConfig;
+
+    [SerializeField]
+    ConfigUnityEntitiesContainer _configUnityEntitiesContainer = new();
 
     public bool TryGetConfig<T>(out T config) where T : ConfigBase
     {
@@ -29,4 +35,53 @@ public class Configurer : ScriptableObject
 
         return true;
     }
+
+#if UNITY_EDITOR
+
+    private void OnValidate()
+    {
+        CollectConfigReferences();
+    }
+
+    [Sirenix.OdinInspector.FoldoutGroup("Methods")]
+    [Sirenix.OdinInspector.Button]
+    public void CollectConfigReferences()
+    {
+        Configs.Clear();
+
+        var fields = GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+        foreach (var field in fields)
+        {
+            if (field.GetValue(this) == null)
+                continue;
+
+            if (!typeof(ConfigBase).IsAssignableFrom(field.GetValue(this).GetType()))
+                continue;
+
+            if (field.GetValue(this) is not ConfigBase economyDataBase)
+                continue;
+
+            if (!Configs.ContainsKey(economyDataBase.GetType()))
+                Configs.Add(economyDataBase.GetType(), economyDataBase);
+        }
+
+        var properties = GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+        foreach (var property in properties)
+        {
+            if (!typeof(ConfigBase).IsAssignableFrom(property.GetValue(this).GetType()))
+                continue;
+
+            if (property.GetValue(this) is not ConfigBase economyDataBase)
+                continue;
+
+            if (!Configs.ContainsKey(economyDataBase.GetType()))
+                Configs.Add(economyDataBase.GetType(), economyDataBase);
+        }
+
+        UnityEditor.EditorUtility.SetDirty(this);
+        UnityEditor.AssetDatabase.SaveAssetIfDirty(this);
+    }
+#endif
 }
