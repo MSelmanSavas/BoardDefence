@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardManagerSystem : GameSystem_Base, IGridManager, IEntityManager
+public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntityManager
 {
     #region IEntityManager Fields
 
@@ -81,8 +81,8 @@ public class BoardManagerSystem : GameSystem_Base, IGridManager, IEntityManager
         if (!base.TryInitialize(gameSystems))
             return false;
 
-        RefBook.Add(this as IGridManager);
-        RefBook.Add(this as IEntityManager);
+        RefBook.AddAs<IGridManager>(this);
+        RefBook.AddAs<IEntityManager>(this);
 
         return true;
     }
@@ -92,8 +92,8 @@ public class BoardManagerSystem : GameSystem_Base, IGridManager, IEntityManager
         if (!base.TryDeInitialize(gameSystems))
             return false;
 
-        RefBook.Remove(this as IGridManager);
-        RefBook.Remove(this as IEntityManager);
+        RefBook.RemoveAs<IGridManager>(this);
+        RefBook.RemoveAs<IEntityManager>(this);
 
         return true;
     }

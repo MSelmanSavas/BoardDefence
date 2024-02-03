@@ -17,19 +17,40 @@ public class RefBook : SingletonMonoBehaviour<RefBook>
     protected override void OnValidateInternal() { }
 
 #if ODIN_INSPECTOR
-    [Sirenix.OdinInspector.ShowInInspector] 
+    [Sirenix.OdinInspector.ShowInInspector]
 #endif
     System.Type lastAddedType;
-    
+
 #if ODIN_INSPECTOR
-    [Sirenix.OdinInspector.ShowInInspector] 
+    [Sirenix.OdinInspector.ShowInInspector]
 #endif
     System.Type lastAccessedType;
 
 #if ODIN_INSPECTOR
-    [Sirenix.OdinInspector.ShowInInspector] 
+    [Sirenix.OdinInspector.ShowInInspector]
 #endif
     System.Type lastRemovedType;
+
+    public static bool AddAs<T>(object obj) => Instance.AddAsInternal<T>(obj);
+    protected virtual bool AddAsInternal<T>(object obj)
+    {
+        if (obj is not T requestedType)
+            return false;
+
+        lastAddedType = typeof(T);
+
+        if (!References.ContainsKey(lastAddedType))
+            References.Add(lastAddedType, new List<object>());
+
+        if (References[lastAddedType].Contains(obj))
+        {
+            Debug.LogError($"References already contains obj of type : {lastAddedType},{obj}! Can't add...");
+            return false;
+        }
+
+        References[lastAddedType].Add(obj);
+        return true;
+    }
 
     public static bool Add(object obj) => Instance.AddInternal(obj);
     protected virtual bool AddInternal(object obj)
@@ -190,6 +211,31 @@ public class RefBook : SingletonMonoBehaviour<RefBook>
             //objs = default;
             return false;
         }
+    }
+
+    public static bool RemoveAs<T>(object obj) => Instance.RemoveAsInternal<T>(obj);
+
+    protected bool RemoveAsInternal<T>(object obj)
+    {
+         if (obj is not T requestedType)
+            return false;
+
+        lastRemovedType = typeof(T);
+
+        if (!References.ContainsKey(lastRemovedType))
+        {
+            Debug.LogWarning($"There is no reference of type : {lastRemovedType}");
+            return false;
+        }
+
+        if (!References[lastRemovedType].Contains(obj))
+        {
+            Debug.LogWarning($"There is no obj found in references of type : {lastRemovedType},{obj}");
+            return false;
+        }
+
+        References[obj.GetType()].Remove(obj);
+        return true;
     }
 
     public static bool Remove(object obj) => Instance.RemoveInternal(obj);

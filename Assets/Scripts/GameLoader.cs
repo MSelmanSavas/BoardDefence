@@ -23,6 +23,11 @@ public class GameLoader : MonoBehaviour
         RefBook.Remove(this);
     }
 
+    private void Start()
+    {
+        InitializeGameLoop();
+    }
+
     public void InitializeGameLoop()
     {
         GameObject gameSystemsObj = new GameObject
@@ -31,6 +36,9 @@ public class GameLoader : MonoBehaviour
         };
 
         GameSystems gameSystems = gameSystemsObj.AddComponent<GameSystems>();
+        gameSystems.TryAddGameSystemByTypeImmediately<BoardManagerSystem_Default>(autoInitialize: false);
+
+        gameSystems.Initialize();
     }
 
     public void DeInitializeGameLoop()
