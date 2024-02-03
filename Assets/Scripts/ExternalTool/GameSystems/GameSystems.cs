@@ -168,6 +168,26 @@ public class GameSystems : MonoBehaviour
         return true;
     }
 
+    public bool TryGetGameSystemByTypeWithoutConstraint<T>(out T gameSystem) where T : class
+    {
+        GameSystem_Base foundGameSystem = _updateGameSystems.Where(x => typeof(T).IsAssignableFrom(x.GetType())).FirstOrDefault();
+
+        if (foundGameSystem == null)
+        {
+            gameSystem = null;
+            return false;
+        }
+
+        if (foundGameSystem.IsMarkedForRemoval)
+        {
+            gameSystem = null;
+            return false;
+        }
+
+        gameSystem = foundGameSystem as T;
+        return true;
+    }
+
     public bool TryRemoveGameSystem(GameSystem_Base gameSystem)
     {
         if (!_updateGameSystems.Contains(gameSystem))
