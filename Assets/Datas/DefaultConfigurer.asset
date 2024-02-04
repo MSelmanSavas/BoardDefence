@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Configs>k__BackingField:
     keyData:
+    - _typeString: ConfigLevelDataContainer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
     - _typeString: ConfigUnityEntitiesContainer, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
     - _typeString: ConfigBoard, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    - _typeString: ConfigLevelDataContainer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   _configUnityEntitiesContainer:
     <UnityEntityDatas>k__BackingField:
@@ -27,9 +27,18 @@ MonoBehaviour:
           PublicKeyToken=null
       - _typeString: GridBuildable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
+      - _typeString: EnemyDefault, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+      - _typeString: EnemyFast, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+      - _typeString: EnemySlow, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
       valueData:
       - <Prefab>k__BackingField: {fileID: 3357515801081374207, guid: 2924a21fbd6e8ff439e1db9bf9381075, type: 3}
       - <Prefab>k__BackingField: {fileID: 3357515801081374207, guid: eed7102e459c8504eb34ad6f418c095e, type: 3}
+      - <Prefab>k__BackingField: {fileID: 8051013401471423517, guid: 52d6e3af9121620459e62c284d5d9d7e, type: 3}
+      - <Prefab>k__BackingField: {fileID: 1750139228547892426, guid: a386383992e90434cb117bb630b15605, type: 3}
+      - <Prefab>k__BackingField: {fileID: 5726596653517055489, guid: 3ce0c21b7624a534fbee5a0a02cb6294, type: 3}
   _configBoard:
     <BoardOffset>k__BackingField: {x: 0.5, y: 0.5}
     <BoardCenter>k__BackingField: {x: 0, y: 0}
