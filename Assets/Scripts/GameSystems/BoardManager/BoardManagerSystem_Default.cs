@@ -25,6 +25,17 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
         Entities.Add(index, entity);
 
+        if (entity.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
+        {
+            entityData_GameObject.GetGameObject().transform.SetParent(_entityParents);
+            entityData_GameObject.GetGameObject().transform.position = GetPosition(index);
+        }
+
+        if (entity.TryGetEntityComponent(out EntityData_EntityManager entityData_EntityManager))
+        {
+            entityData_EntityManager.ConnectedEntityManager = this;
+        }
+
         return true;
     }
 
@@ -40,6 +51,11 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
         Entities.Remove(index);
 
+        if (removedEntity.TryGetEntityComponent(out EntityData_EntityManager entityData_EntityManager))
+        {
+            entityData_EntityManager.ConnectedEntityManager = null;
+        }
+
         return true;
     }
 
@@ -54,8 +70,17 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
             return false;
 
         Grids.Add(index, Grid);
-        Grid.transform.SetParent(_gridParents);
-        Grid.transform.position = GetPosition(index);
+
+        if (Grid.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
+        {
+            entityData_GameObject.GetGameObject().transform.SetParent(_entityParents);
+            entityData_GameObject.GetGameObject().transform.position = GetPosition(index);
+        }
+
+        if (Grid.TryGetEntityComponent(out EntityData_GridManager entityData_GridManager))
+        {
+            entityData_GridManager.ConnectedGridManager = this;
+        }
 
         return true;
     }
@@ -71,6 +96,11 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
             return false;
 
         Grids.Remove(index);
+
+        if (removedGrid.TryGetEntityComponent(out EntityData_GridManager entityData_GridManager))
+        {
+            entityData_GridManager.ConnectedGridManager = null;
+        }
 
         return true;
     }
