@@ -68,14 +68,24 @@ public class EntityData_GridMovement : EntityComponent_Base
 
     bool TryMoveGrid()
     {
-        Vector2Int currentIndex = _entityGridIndex.GetIndex();
-        Vector2Int moveToIndex = currentIndex;
-        moveToIndex.y += -_gridMoveDistance;
+        int checkDistance = _gridMoveDistance;
 
-        if (!_entityManager.ConnectedEntityManager.TryMoveEntity(currentIndex, moveToIndex))
-            return false;
+        while (checkDistance > 0)
+        {
+            Vector2Int currentIndex = _entityGridIndex.GetIndex();
+            Vector2Int moveToIndex = currentIndex;
+            moveToIndex.y += -checkDistance;
 
-        _entityGameObject.GetGameObject().transform.position = _indexToPositionProvider.GetPosition(moveToIndex);
-        return true;
+            if (!_entityManager.ConnectedEntityManager.TryMoveEntity(currentIndex, moveToIndex))
+            {
+                checkDistance--;
+                continue;
+            }
+
+            _entityGameObject.GetGameObject().transform.position = _indexToPositionProvider.GetPosition(moveToIndex);
+            return true;
+        }
+
+        return false;
     }
 }
