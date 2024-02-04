@@ -73,7 +73,7 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
         if (Grid.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
         {
-            entityData_GameObject.GetGameObject().transform.SetParent(_entityParents);
+            entityData_GameObject.GetGameObject().transform.SetParent(_gridParents);
             entityData_GameObject.GetGameObject().transform.position = GetPosition(index);
         }
 
