@@ -8,6 +8,8 @@ public class BoardLoader_Default : GameSystem_Base
     [Sirenix.OdinInspector.ShowInInspector]
     ConfigUnityEntitiesContainer _entityContainer;
 
+    [Sirenix.OdinInspector.ShowInInspector]
+    ILevelDataProvider _levelDataProvider;
 
     public override bool TryInitialize(GameSystems gameSystems)
     {
@@ -15,6 +17,9 @@ public class BoardLoader_Default : GameSystem_Base
             return false;
 
         if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _gridManager))
+            return false;
+
+        if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _levelDataProvider))
             return false;
 
         if (!RefBook.TryGet(out Configurer configurer))
@@ -38,47 +43,51 @@ public class BoardLoader_Default : GameSystem_Base
 
     void LoadGameplayGrids(IGridManager gridManager, ConfigUnityEntitiesContainer entityContainer)
     {
-        Vector2Int gridSize = new Vector2Int(4, 8);
+        LevelData levelData = _levelDataProvider.GetCurrentLevelData();
+
+        Vector2Int gridSize = levelData.BoardSize;
         gridManager.TrySetGridSize(gridSize);
 
-        for (int y = 0; y < gridSize.y / 2; y++)
-            for (int x = 0; x < gridSize.x; x++)
+        for (int i = 0; i < levelData.BuildableIndices.Count; i++)
+        {
+            Vector2Int index = levelData.BuildableIndices[i];
+
+            if (!entityContainer.TryGetUnityEntityData(typeof(GridBuildable), out UnityEntityData data))
             {
-                Vector2Int index = new(x, y);
-
-                if (!entityContainer.TryGetUnityEntityData(typeof(GridBuildable), out UnityEntityData data))
-                {
-                    Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot find data. Skipping grid at index : {index}");
-                    continue;
-                }
-
-                if (data.Prefab == null)
-                {
-                    Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot find prefab from data. Skipping grid at index : {index}");
-                    continue;
-                }
-
-                var gridObj = GameObject.Instantiate(data.Prefab);
-
-                if (!gridObj.TryGetComponent(out GridBase gridBase))
-                {
-                    Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot find {nameof(GridBase)} on obj {gridObj}!. Skipping grid at index : {index}");
-                    GameObject.Destroy(gridObj);
-                    continue;
-                }
-
-                if (!gridManager.TryAddGrid(index, gridBase))
-                {
-                    Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot add {gridBase} on {gridManager}!. Skipping grid at index : {index}");
-                    GameObject.Destroy(gridObj);
-                    continue;
-                }
+                Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot find data. Skipping grid at index : {index}");
+                continue;
             }
 
-        for (int y = gridSize.y / 2; y < gridSize.y; y++)
+            if (data.Prefab == null)
+            {
+                Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot find prefab from data. Skipping grid at index : {index}");
+                continue;
+            }
+
+            var gridObj = GameObject.Instantiate(data.Prefab);
+
+            if (!gridObj.TryGetComponent(out GridBase gridBase))
+            {
+                Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot find {nameof(GridBase)} on obj {gridObj}!. Skipping grid at index : {index}");
+                GameObject.Destroy(gridObj);
+                continue;
+            }
+
+            if (!gridManager.TryAddGrid(index, gridBase))
+            {
+                Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot add {gridBase} on {gridManager}!. Skipping grid at index : {index}");
+                GameObject.Destroy(gridObj);
+                continue;
+            }
+        }
+
+        for (int y = 0; y < gridSize.y; y++)
             for (int x = 0; x < gridSize.x; x++)
             {
                 Vector2Int index = new(x, y);
+
+                if (gridManager.TryGetGrid(index, out GridBase foundGrid) && foundGrid != null)
+                    continue;
 
                 if (!entityContainer.TryGetUnityEntityData(typeof(GridDefault), out UnityEntityData data))
                 {
