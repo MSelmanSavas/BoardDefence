@@ -41,6 +41,7 @@ public class GameLoader : MonoBehaviour
         gameSystems.TryAddGameSystemByTypeImmediately<BoardLoader_Default>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<LevelDataSystem>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<EnemySpawnerSystem>(autoInitialize: false);
+        gameSystems.TryAddGameSystemByTypeImmediately<EntityUpdateSystem>(autoInitialize: false);
 
         gameSystems.Initialize();
     }

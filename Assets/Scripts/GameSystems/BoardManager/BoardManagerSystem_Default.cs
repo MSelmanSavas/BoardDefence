@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
     #region IEntityManager Methods
 
+    public IEnumerator GetEntityIterator() => Entities.GetEnumerator();
     public bool TryAddEntity(Vector2Int index, IEntity entity)
     {
         if (Entities.ContainsKey(index))
@@ -34,7 +36,9 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         if (entity.TryGetEntityComponent(out EntityData_EntityManager entityData_EntityManager))
         {
             entityData_EntityManager.ConnectedEntityManager = this;
-        }
+        }   
+
+        Entities.GetEnumerator();
 
         return true;
     }
