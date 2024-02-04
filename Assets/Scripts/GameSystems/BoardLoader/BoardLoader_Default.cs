@@ -6,6 +6,9 @@ public class BoardLoader_Default : GameSystem_Base
     IGridManager _gridManager;
 
     [Sirenix.OdinInspector.ShowInInspector]
+    IIndexToPositionProvider _indexToPositionProvider;
+
+    [Sirenix.OdinInspector.ShowInInspector]
     ConfigUnityEntitiesContainer _entityContainer;
 
     [Sirenix.OdinInspector.ShowInInspector]
@@ -17,6 +20,9 @@ public class BoardLoader_Default : GameSystem_Base
             return false;
 
         if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _gridManager))
+            return false;
+
+        if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _indexToPositionProvider))
             return false;
 
         if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _levelDataProvider))
@@ -79,6 +85,8 @@ public class BoardLoader_Default : GameSystem_Base
                 GameObject.Destroy(gridObj);
                 continue;
             }
+
+            gridBase.transform.position = _indexToPositionProvider.GetPosition(index);
         }
 
         for (int y = 0; y < gridSize.y; y++)
@@ -116,6 +124,8 @@ public class BoardLoader_Default : GameSystem_Base
                     GameObject.Destroy(gridObj);
                     continue;
                 }
+
+                gridBase.transform.position = _indexToPositionProvider.GetPosition(index);
             }
     }
 }

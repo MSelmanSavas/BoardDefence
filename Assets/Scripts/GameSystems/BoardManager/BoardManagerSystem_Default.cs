@@ -30,7 +30,6 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         if (entity.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
         {
             entityData_GameObject.GetGameObject().transform.SetParent(_entityParents);
-            entityData_GameObject.GetGameObject().transform.position = GetPosition(index);
         }
 
         if (entity.TryGetEntityComponent(out EntityData_EntityManager entityData_EntityManager))
@@ -45,6 +44,23 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
 
         Entities.GetEnumerator();
+
+        return true;
+    }
+
+    public bool TryMoveEntity(Vector2Int fromIndex, Vector2Int toIndex)
+    {
+        if (!TryGetEntity(fromIndex, out IEntity fromEntity))
+            return false;
+
+        if (TryGetEntity(toIndex, out IEntity toEntitiy))
+            return false;
+
+        if (!TryRemoveEntity(fromIndex, out IEntity removedEntity))
+            return false;
+
+        if (!TryAddEntity(toIndex, fromEntity))
+            return false;
 
         return true;
     }

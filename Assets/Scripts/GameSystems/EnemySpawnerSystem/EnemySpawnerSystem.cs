@@ -13,6 +13,9 @@ public class EnemySpawnerSystem : GameSystem_Base
     IGridManager _gridManager;
 
     [Sirenix.OdinInspector.ShowInInspector]
+    IIndexToPositionProvider _indexToPositionProvider;
+
+    [Sirenix.OdinInspector.ShowInInspector]
     ILevelDataProvider _levelDataProvider;
 
     [Sirenix.OdinInspector.ShowInInspector]
@@ -48,6 +51,9 @@ public class EnemySpawnerSystem : GameSystem_Base
             return false;
 
         if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _gridManager))
+            return false;
+
+        if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _indexToPositionProvider))
             return false;
 
         if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _levelDataProvider))
@@ -196,6 +202,11 @@ public class EnemySpawnerSystem : GameSystem_Base
                 Logger.LogErrorWithTag(LogCategory.BoardLoader, $"Cannot add {entity} on {entityManager} with index : {indexToSpawn}");
                 GameObject.Destroy(enemyObj);
                 continue;
+            }
+
+            if (entity.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
+            {
+                entityData_GameObject.GetGameObject().transform.position = _indexToPositionProvider.GetPosition(indexToSpawn);
             }
 
             return true;
