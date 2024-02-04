@@ -1,4 +1,4 @@
-public class GridBase : UnityEntity_Base
+public abstract class GridBase : UnityEntity_Base
 {
     
 }
