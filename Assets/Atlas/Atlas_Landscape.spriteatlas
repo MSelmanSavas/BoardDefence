@@ -1,0 +1,250 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Atlas_Landscape
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 2
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: iPhone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: d381cb18ab45fa9469948f7dc65902f8, type: 3}
+    - {fileID: 102900000, guid: 30a81bf788526494e9b745ae9675b4ac, type: 3}
+    - {fileID: 102900000, guid: 73316685bec75ea42bfc6354610e3e7c, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 21a78050cf7604a42a1c36f10a13a6d4, type: 3}
+  - {fileID: 21300000, guid: ea8f3680d7c7e6e4595800571e15209f, type: 3}
+  - {fileID: 21300000, guid: d0d835a0800a4964cb4dd60618402440, type: 3}
+  - {fileID: 21300000, guid: a3f861b08f4081344a12a44498b2ba5f, type: 3}
+  - {fileID: 21300000, guid: 458159c0b56d251409099ae1adb4cd31, type: 3}
+  - {fileID: 21300000, guid: 6dc529d077090ef4baf031f73fa0cc30, type: 3}
+  - {fileID: 21300000, guid: cbba4261104d101499be9f8e11de018d, type: 3}
+  - {fileID: 21300000, guid: 535b45c1659b53c4d84c54088636a683, type: 3}
+  - {fileID: 21300000, guid: fa557cc1aab73db40aa5037e9c0cb506, type: 3}
+  - {fileID: 21300000, guid: 49bc38e1dd16d094ab20e22f2731fe6a, type: 3}
+  - {fileID: 21300000, guid: 9a356022e2fe47e46981755223b6777d, type: 3}
+  - {fileID: 21300000, guid: 341c1272d93988142a2a41b2e039cff6, type: 3}
+  - {fileID: 21300000, guid: 04c63bb252da5e44fb5bac65de09801c, type: 3}
+  - {fileID: 21300000, guid: 742b91f2a81a80c48b0e0a356830feb7, type: 3}
+  - {fileID: 21300000, guid: 05ab9af2583685b4780f2a90d62d448b, type: 3}
+  - {fileID: 21300000, guid: 48ba3c132d70e2e41b00cb1557d701e8, type: 3}
+  - {fileID: 21300000, guid: c7e24263be0c72d4ba905e92745b3450, type: 3}
+  - {fileID: 21300000, guid: fd9f0ab3dd99a8b4d8c08f8f83a11ccb, type: 3}
+  - {fileID: 21300000, guid: 648071d341d4a0a44a813a503d0094a6, type: 3}
+  - {fileID: 21300000, guid: f90efbd363e2a514e8d75e0c58a78389, type: 3}
+  - {fileID: 21300000, guid: 674780f38ed8c414f9f20d549a6438e6, type: 3}
+  - {fileID: 21300000, guid: f864340429691c84cafff4c1f145c348, type: 3}
+  - {fileID: 21300000, guid: 0e839f0458eee0048bfb70d395c8cbf9, type: 3}
+  - {fileID: 21300000, guid: 5553d524fc8f6bd48b50faec6e392803, type: 3}
+  - {fileID: 21300000, guid: a0063b84c33397e4ca9e8d4d715366ea, type: 3}
+  - {fileID: 21300000, guid: d4ec7e84c7000ab41b12d57df92bc6e3, type: 3}
+  - {fileID: 21300000, guid: 131867a41b096874b98e66a783c86c6f, type: 3}
+  - {fileID: 21300000, guid: d56e52c42058ea44c8568ca6ecd9931a, type: 3}
+  - {fileID: 21300000, guid: 99288fc4fcf307e41962dfbbf115a3f2, type: 3}
+  - {fileID: 21300000, guid: 6b4294d41decf6245b47a0482e7bd0ad, type: 3}
+  - {fileID: 21300000, guid: e2bb5f05f8a65774cb91ca0ccee44ffd, type: 3}
+  - {fileID: 21300000, guid: dcdfee5539034494890d4cd802306a1d, type: 3}
+  - {fileID: 21300000, guid: 52c05d95c008e084a82bdbc6cafb6eb6, type: 3}
+  - {fileID: 21300000, guid: 499139a5025b4ec4892158631e2073a8, type: 3}
+  - {fileID: 21300000, guid: 75764926cdf750f4184b5227959c72cc, type: 3}
+  - {fileID: 21300000, guid: 0ba77c36428c1ad4aa9f5c3ca0c9bc5f, type: 3}
+  - {fileID: 21300000, guid: eacd4446c407b60449a24ca05c29e0ad, type: 3}
+  - {fileID: 21300000, guid: d9ae7d562e138df44ab78a99385244f7, type: 3}
+  - {fileID: 21300000, guid: ea98c696b5f31dd4abae777b98cac369, type: 3}
+  - {fileID: 21300000, guid: 8e11e7966550c714db29f1f89e5f0d41, type: 3}
+  - {fileID: 21300000, guid: 3fdcb8f6fbe9c7a45ad2538e6702a575, type: 3}
+  - {fileID: 21300000, guid: 90b05767c233208479f8c4ca186c0917, type: 3}
+  - {fileID: 21300000, guid: 1c4d77672ea43d64cb23a47d9dbb9c66, type: 3}
+  - {fileID: 21300000, guid: 25ee90876ff53c649b4b42a1efb2ca69, type: 3}
+  - {fileID: 21300000, guid: 4e3b3ce7bafca2c40a4960a455182fbe, type: 3}
+  - {fileID: 21300000, guid: 3146ba189cf72774dbacd04c54957ab8, type: 3}
+  - {fileID: 21300000, guid: 53d30f288d928b848851d138e896e42a, type: 3}
+  - {fileID: 21300000, guid: 5167b8981af0091429fdb3b76d247214, type: 3}
+  - {fileID: 21300000, guid: 063cde98401d38c41ba36593862f4d79, type: 3}
+  - {fileID: 21300000, guid: a6f2e6c827e6e384bba45e8611833773, type: 3}
+  - {fileID: 21300000, guid: fa5f67f8b8d177e47a824af2cf3de863, type: 3}
+  - {fileID: 21300000, guid: bda8c499111718d42abcf68129fb2de6, type: 3}
+  - {fileID: 21300000, guid: c9604999caf1b624787711e37c1f9477, type: 3}
+  - {fileID: 21300000, guid: cffe60a9c52d4a1428fdfa5901d230ff, type: 3}
+  - {fileID: 21300000, guid: df08f1a9cc8663448bb4a0eee0bca193, type: 3}
+  - {fileID: 21300000, guid: 4c07ba0a9bb39994a849a45b7885fbbc, type: 3}
+  - {fileID: 21300000, guid: 6102f52ad94a3dc42bdbf392fd7b16e2, type: 3}
+  - {fileID: 21300000, guid: f4016d2acf0bd63469e07edfda434125, type: 3}
+  - {fileID: 21300000, guid: 47b6565a5ebfa79468918b747e5ed7f6, type: 3}
+  - {fileID: 21300000, guid: 3f0a347ac17ebf741a4b50a2cadd1b1f, type: 3}
+  - {fileID: 21300000, guid: f31c72aa92f107642ac5c6192956cb8e, type: 3}
+  - {fileID: 21300000, guid: 3b6c6caa3a10c2f43973bdf9999a2dd6, type: 3}
+  - {fileID: 21300000, guid: 9d1b45fa9d6b5874190dd6ec464a63bd, type: 3}
+  - {fileID: 21300000, guid: 9135521be01f01342bc6ea70bedd9826, type: 3}
+  - {fileID: 21300000, guid: f211161b443b9414e898e7879dcaa0e0, type: 3}
+  - {fileID: 21300000, guid: 84587e2b355cac9448cc910d732e6f8b, type: 3}
+  - {fileID: 21300000, guid: 61ac4c8b2615fd0498fe111f4b1c02d5, type: 3}
+  - {fileID: 21300000, guid: 4cde38ab21a5ee243a82b8a0add8577d, type: 3}
+  - {fileID: 21300000, guid: 4268f9abda9291044aae4c2ff1e9ec74, type: 3}
+  - {fileID: 21300000, guid: b5a6de5c0657c824b8caa1b7b811d6e3, type: 3}
+  - {fileID: 21300000, guid: 16d1f06c37b0e6e4abfaffebfa2d5fba, type: 3}
+  - {fileID: 21300000, guid: 9b6a9f7ca5a036a47afe1a5185b0137a, type: 3}
+  - {fileID: 21300000, guid: 7fc4d69ce56a9fd48a27c6203ad6406d, type: 3}
+  - {fileID: 21300000, guid: fcfc33eca47adc94da327dc1d8a301e7, type: 3}
+  - {fileID: 21300000, guid: 73bcaf0dd9050a54fab09f1c62841342, type: 3}
+  - {fileID: 21300000, guid: 3187c92d297e6f2499cf6a6e3eed623c, type: 3}
+  - {fileID: 21300000, guid: cccd963d8075c164c93c7d5154fe2c56, type: 3}
+  - {fileID: 21300000, guid: 259beb6d93965f340be5c74bdfe163a8, type: 3}
+  - {fileID: 21300000, guid: b63ab69d690879a4c80794a7952b8f18, type: 3}
+  - {fileID: 21300000, guid: 14490e9dd06d20041a231053c1ea3384, type: 3}
+  - {fileID: 21300000, guid: 15dd0ead7921f3540b4a4a93b0398684, type: 3}
+  - {fileID: 21300000, guid: 8e9b3acd3360e924087bfe0d4b2b14ee, type: 3}
+  - {fileID: 21300000, guid: 29d945ddd37937c4aaef1c94d19b7ac0, type: 3}
+  - {fileID: 21300000, guid: af695afdb53f7844185f6cab953a64c8, type: 3}
+  - {fileID: 21300000, guid: 4d4b2fae58625334db37eb6c8ba40aef, type: 3}
+  - {fileID: 21300000, guid: 39f80beeca022434dadf51ca1d222049, type: 3}
+  - {fileID: 21300000, guid: 09d7db8f7c2e52c48b0419ece80c4703, type: 3}
+  - {fileID: 21300000, guid: 3e47169f918d1974894ac6a6fbbce64b, type: 3}
+  - {fileID: 21300000, guid: e4cf30ff93a512b40afc52faa4bc77e5, type: 3}
+  - {fileID: 21300000, guid: de5093ff3489994459d47059bf888943, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - grass_decoration(6)
+  - road_spring(4)
+  - road_winter(9)
+  - grass_decoration(2)_1
+  - stone_ground(1)
+  - snow_decoration(5)
+  - grass_decoration(4)
+  - road_spring(8)
+  - crystal(2)
+  - buildingPlaceSnow
+  - sand_decoration(2)
+  - snow
+  - cactus(5)
+  - road_desert(8)
+  - cactus(4)
+  - road_spring(5)
+  - road_desert(3)
+  - snow_decoration(2)
+  - snow_decoration(4)
+  - grass_decoration(9)
+  - tree(2)
+  - road_spring(11)
+  - tree(1)
+  - snow_decoration(6)
+  - road_winter(4)
+  - crystal(3)
+  - road_desert(9)
+  - road_winter(8)
+  - stone(1)
+  - road_winter(3)
+  - sand_decoration(6)
+  - stone_ground(4)
+  - road_spring(9)
+  - cactus(2)
+  - road_winter(7)
+  - snow_decoration(8)
+  - grass
+  - stone_sand(2)
+  - stone_ground(2)
+  - cactus(3)
+  - road_desert(6)
+  - road_winter(10)
+  - sand_decoration(3)
+  - sand_decoration(8)
+  - stone_sand(3)
+  - grass_decoration(8)
+  - snow_decoration(7)
+  - snow_decoration(9)
+  - snow_decoration(1)
+  - grass_decoration(2)
+  - road_winter(6)
+  - road_spring(7)
+  - stone(2)
+  - sand_decoration(9)
+  - tree_winter(2)
+  - sand_decoration(7)
+  - road_spring(1)
+  - road_spring(2)
+  - cactus(1)
+  - road_desert(1)
+  - road_spring(6)
+  - stone(3)
+  - stone_sand(4)
+  - road_desert(10)
+  - grass_decoration(5)
+  - road_desert(7)
+  - sand_decoration(1)
+  - road_winter(11)
+  - sand_decoration(5)
+  - buildingPlaceGrass
+  - road_spring(12)
+  - stone(4)
+  - snow_decoration(3)
+  - road_spring(3)
+  - grass_decoration(1)
+  - sand
+  - road_winter(5)
+  - crystal(1)
+  - tree_winter(1)
+  - sand_decoration(4)
+  - road_desert(5)
+  - stone_ground(3)
+  - grass_decoration(7)
+  - stone_sand(1)
+  - road_desert(2)
+  - buildingPlaceSand
+  - road_winter(2)
+  - road_desert(4)
+  - road_desert(11)
+  - road_winter(1)
+  m_RenderDataMap: {}
+  m_Tag: Atlas_Landscape
+  m_IsVariant: 0
