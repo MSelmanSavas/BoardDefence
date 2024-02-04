@@ -22,6 +22,9 @@ public class Configurer : ScriptableObject
     [SerializeField]
     ConfigBoard _configBoard = new();
 
+    [SerializeField]
+    ConfigLevelDataContainer _configLevelDataContainer;
+
     public bool TryGetConfig<T>(out T config) where T : ConfigBase
     {
         config = null;

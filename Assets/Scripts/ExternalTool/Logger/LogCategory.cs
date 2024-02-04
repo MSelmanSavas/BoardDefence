@@ -5,4 +5,5 @@ public enum LogCategory
     GameSystems = 1,
     BoardManager = 2,
     BoardLoader = 3,
+    LevelData = 4,
 }
