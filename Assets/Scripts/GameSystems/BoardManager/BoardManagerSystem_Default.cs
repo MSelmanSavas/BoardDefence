@@ -141,15 +141,15 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         RefBook.RemoveAs<IIndexToPositionProvider>(this);
         RefBook.RemoveAs<IPositionToIndexProvider>(this);
 
-        foreach (var entity in Entities)
+        foreach (var (key, entity) in Entities)
         {
-            if (entity.Value == null)
+            if (entity == null)
                 continue;
 
-            // if (!entity.Value.TryGetEntityComponent(out BlockData_GameObject gameObjectData))
-            //     continue;
+            if (!entity.TryGetEntityComponent(out EntityData_GameObject gameObjectData))
+                continue;
 
-            //GameObject.Destroy(gameObjectData.GetGameObject());
+            GameObject.Destroy(gameObjectData.GetGameObject());
         }
 
         foreach (var (key, grid) in Grids)
@@ -157,7 +157,10 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
             if (grid == null)
                 continue;
 
-            GameObject.Destroy(grid.gameObject);
+            if (!grid.TryGetEntityComponent(out EntityData_GameObject gameObjectData))
+                continue;
+
+            GameObject.Destroy(gameObjectData.GetGameObject());
         }
 
         Entities.Clear();
