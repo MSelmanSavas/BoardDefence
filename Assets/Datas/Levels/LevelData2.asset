@@ -40,6 +40,10 @@ MonoBehaviour:
     DefenceItemData:
       <DefenceItemLimits>k__BackingField:
         keyData:
-        - _typeString: DefenceItemTower, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        - _typeString: DefenceItemTowerLongRange, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        - _typeString: DefenceItemTowerMediumRange, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        - _typeString: DefenceItemTowerArea, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
             PublicKeyToken=null
-        valueData: 03000000
+        valueData: 030000000400000002000000
