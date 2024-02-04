@@ -34,9 +34,13 @@ MonoBehaviour:
     EnemySpawnData:
       <EnemySpawnLimits>k__BackingField:
         keyData:
+        - _typeString: EnemyFast, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        - _typeString: EnemySlow, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
         - _typeString: EnemyDefault, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
             PublicKeyToken=null
-        valueData: 03000000
+        valueData: 030000000100000001000000
     DefenceItemData:
       <DefenceItemLimits>k__BackingField:
         keyData:
