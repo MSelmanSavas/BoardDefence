@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntityManager
+public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntityManager, IIndexToPositionProvider, IPositionToIndexProvider
 {
     #region IEntityManager Fields
 
@@ -50,11 +50,12 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
     public bool TryAddGrid(Vector2Int index, GridBase Grid)
     {
-
         if (Grids.ContainsKey(index))
             return false;
 
         Grids.Add(index, Grid);
+        Grid.transform.SetParent(_gridParents);
+        Grid.transform.position = GetPosition(index);
 
         return true;
     }
@@ -76,14 +77,50 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
     #endregion
 
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.ShowInInspector]
+#endif
+    public Vector2Int BoardSize { get; private set; }
+
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.ShowInInspector]
+#endif
+    public Vector2 BoardOrigin { get; private set; }
+
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.ShowInInspector]
+#endif
+    public Vector2 BoardCenter { get; private set; }
+
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.ShowInInspector]
+#endif
+    public Vector2 BoardOffset { get; private set; }
+
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.ShowInInspector]
+#endif
+    public Vector2 BoardCellSize { get; private set; }
+
     Transform _gridParents;
     public override bool TryInitialize(GameSystems gameSystems)
     {
         if (!base.TryInitialize(gameSystems))
             return false;
 
+        if (RefBook.TryGet(out Configurer configurer))
+            if (configurer.TryGetConfig(out ConfigBoard configBoard))
+                SetBoardConfig(configBoard);
+
         RefBook.AddAs<IGridManager>(this);
         RefBook.AddAs<IEntityManager>(this);
+        RefBook.AddAs<IIndexToPositionProvider>(this);
+        RefBook.AddAs<IPositionToIndexProvider>(this);
+
+        _gridParents = new GameObject()
+        {
+            name = "GameFieldParent"
+        }.transform;
 
         return true;
     }
@@ -95,7 +132,84 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
         RefBook.RemoveAs<IGridManager>(this);
         RefBook.RemoveAs<IEntityManager>(this);
+        RefBook.RemoveAs<IIndexToPositionProvider>(this);
+        RefBook.RemoveAs<IPositionToIndexProvider>(this);
+
+        foreach (var entity in Entities)
+        {
+            if (entity.Value == null)
+                continue;
+
+            // if (!entity.Value.TryGetEntityComponent(out BlockData_GameObject gameObjectData))
+            //     continue;
+
+            //GameObject.Destroy(gameObjectData.GetGameObject());
+        }
+
+        foreach (var (key, grid) in Grids)
+        {
+            if (grid == null)
+                continue;
+
+            GameObject.Destroy(grid.gameObject);
+        }
+
+        Entities.Clear();
+        Grids.Clear();
+
+        GameObject.Destroy(_gridParents.gameObject);
 
         return true;
     }
+
+    void SetBoardConfig(ConfigBoard configBoard)
+    {
+        if (configBoard == null)
+            return;
+
+        BoardOrigin = Vector2.zero;
+        BoardCellSize = configBoard.BoardCellSize;
+        BoardOffset = configBoard.BoardOffset;
+        BoardCenter = configBoard.BoardCenter;
+    }
+
+    public bool TrySetGridSize(Vector2Int gridSize)
+    {
+        BoardSize = gridSize;
+
+        BoardOrigin = new Vector2
+        {
+            x = (-BoardCellSize.x / 2f) - ((gridSize.x - 1) / 2f * BoardCellSize.x),
+            y = (BoardCellSize.y / 2f) - ((gridSize.y - 1) / 2f * BoardCellSize.y)
+        };
+
+        BoardOrigin += BoardCenter;
+        BoardOrigin += BoardOffset;
+
+        return true;
+    }
+
+    #region IIndexToPositionProvider Methods
+
+    public Vector2 GetPosition(Vector2Int index)
+    {
+        return BoardOrigin + new Vector2(index.x * BoardCellSize.x,
+                                   index.y * BoardCellSize.y);
+    }
+
+    #endregion
+
+    #region IPositionToIndexProvider Methods
+
+    public Vector2Int GetIndex(Vector2 position)
+    {
+        Vector2 currentPosition = position - BoardOrigin;
+
+        float xIndex = currentPosition.x / BoardSize.x;
+        float yIndex = currentPosition.y / BoardSize.y;
+
+        return new Vector2Int((int)xIndex, (int)yIndex);
+    }
+
+    #endregion
 }

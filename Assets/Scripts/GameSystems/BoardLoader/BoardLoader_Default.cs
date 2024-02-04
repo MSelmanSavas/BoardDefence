@@ -39,6 +39,7 @@ public class BoardLoader_Default : GameSystem_Base
     void LoadGameplayGrids(IGridManager gridManager, ConfigUnityEntitiesContainer entityContainer)
     {
         Vector2Int gridSize = new Vector2Int(4, 8);
+        gridManager.TrySetGridSize(gridSize);
 
         for (int y = 0; y < gridSize.y; y++)
             for (int x = 0; x < gridSize.x; x++)

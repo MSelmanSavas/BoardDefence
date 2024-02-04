@@ -65,7 +65,7 @@ public class UnityEntity_Base : MonoBehaviour, IEntity
     public virtual bool OnAfterLoad() { return true; }
     public virtual bool OnSpawned() { return true; }
 
-    public bool TryGetComponent<T>(out T component) where T : EntityComponent_Base, new()
+    public bool TryGetEntityComponent<T>(out T component) where T : EntityComponent_Base, new()
     {
         _entityComponentTypeRefCache.Type = typeof(T);
 
@@ -79,7 +79,7 @@ public class UnityEntity_Base : MonoBehaviour, IEntity
         return component != null;
     }
 
-    public bool TryAddComponent<T>(T component) where T : EntityComponent_Base, new()
+    public bool TryAddEntityComponent<T>(T component) where T : EntityComponent_Base, new()
     {
         _entityComponentTypeRefCache.Type = typeof(T);
 
@@ -93,16 +93,16 @@ public class UnityEntity_Base : MonoBehaviour, IEntity
         return true;
     }
 
-    public bool TryGetOrAddComponent<T>(out T component) where T : EntityComponent_Base, new()
+    public bool TryGetOrAddEntityComponent<T>(out T component) where T : EntityComponent_Base, new()
     {
-        if (TryGetComponent(out component))
+        if (TryGetEntityComponent(out component))
             return true;
 
         component = new T();
-        return TryAddComponent(component);
+        return TryAddEntityComponent(component);
     }
 
-    public bool TryRemoveComponent<T>() where T : EntityComponent_Base, new()
+    public bool TryRemoveEntityComponent<T>() where T : EntityComponent_Base, new()
     {
         _entityComponentTypeRefCache.Type = typeof(T);
 
@@ -112,7 +112,7 @@ public class UnityEntity_Base : MonoBehaviour, IEntity
         return _entityComponents.Remove(_entityComponentTypeRefCache);
     }
 
-     public bool TryRemoveComponent<T>(T component) where T : EntityComponent_Base, new()
+    public bool TryRemoveEntityComponent<T>(T component) where T : EntityComponent_Base, new()
     {
         _entityComponentTypeRefCache.Type = component.GetType();
 

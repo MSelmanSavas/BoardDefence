@@ -19,6 +19,9 @@ public class Configurer : ScriptableObject
     [SerializeField]
     ConfigUnityEntitiesContainer _configUnityEntitiesContainer = new();
 
+    [SerializeField]
+    ConfigBoard _configBoard = new();
+
     public bool TryGetConfig<T>(out T config) where T : ConfigBase
     {
         config = null;
