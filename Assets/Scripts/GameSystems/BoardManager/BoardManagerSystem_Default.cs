@@ -103,6 +103,7 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
     public Vector2 BoardCellSize { get; private set; }
 
     Transform _gridParents;
+    Transform _entityParents;
     public override bool TryInitialize(GameSystems gameSystems)
     {
         if (!base.TryInitialize(gameSystems))
@@ -119,7 +120,12 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
         _gridParents = new GameObject()
         {
-            name = "GameFieldParent"
+            name = "GridParent"
+        }.transform;
+
+        _entityParents = new GameObject()
+        {
+            name = "EntityParent"
         }.transform;
 
         return true;
@@ -157,6 +163,7 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         Entities.Clear();
         Grids.Clear();
 
+        GameObject.Destroy(_entityParents.gameObject);
         GameObject.Destroy(_gridParents.gameObject);
 
         return true;
