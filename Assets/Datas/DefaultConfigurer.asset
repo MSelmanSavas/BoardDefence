@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Configs>k__BackingField:
     keyData:
-    - _typeString: ConfigLevelDataContainer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
     - _typeString: ConfigUnityEntitiesContainer, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
     - _typeString: ConfigBoard, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - _typeString: ConfigLevelDataContainer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   _configUnityEntitiesContainer:
     <UnityEntityDatas>k__BackingField:
