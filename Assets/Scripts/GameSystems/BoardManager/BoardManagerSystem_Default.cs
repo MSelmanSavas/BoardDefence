@@ -105,6 +105,24 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         return true;
     }
 
+    public bool TrySetGridSize(Vector2Int gridSize)
+    {
+        BoardSize = gridSize;
+
+        BoardOrigin = new Vector2
+        {
+            x = (-BoardCellSize.x / 2f) - ((gridSize.x - 1) / 2f * BoardCellSize.x),
+            y = (BoardCellSize.y / 2f) - ((gridSize.y - 1) / 2f * BoardCellSize.y)
+        };
+
+        BoardOrigin += BoardCenter;
+        BoardOrigin += BoardOffset;
+
+        return true;
+    }
+
+    public Vector2Int GetGridSize() => BoardSize;
+
     #endregion
 
 #if ODIN_INSPECTOR
@@ -213,21 +231,7 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         BoardCenter = configBoard.BoardCenter;
     }
 
-    public bool TrySetGridSize(Vector2Int gridSize)
-    {
-        BoardSize = gridSize;
 
-        BoardOrigin = new Vector2
-        {
-            x = (-BoardCellSize.x / 2f) - ((gridSize.x - 1) / 2f * BoardCellSize.x),
-            y = (BoardCellSize.y / 2f) - ((gridSize.y - 1) / 2f * BoardCellSize.y)
-        };
-
-        BoardOrigin += BoardCenter;
-        BoardOrigin += BoardOffset;
-
-        return true;
-    }
 
     #region IIndexToPositionProvider Methods
 
