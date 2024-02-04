@@ -2,11 +2,9 @@ using System;
 
 public abstract class DefenceItemBase : UnityEntity_Base, IUpdatableEntity
 {
-    Action _onUpdate;
-    public Action GetOnUpdateEvent() => _onUpdate;
-
+    public Action OnUpdate { get; set; }
     void IUpdatableEntity.UpdateEntity()
     {
-        _onUpdate?.Invoke();
+        OnUpdate?.Invoke();
     }
 }

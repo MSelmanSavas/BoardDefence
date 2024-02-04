@@ -1,5 +1,5 @@
 public interface IUpdatableEntity
 {
-    System.Action GetOnUpdateEvent();
+    System.Action OnUpdate { get; set; }
     void UpdateEntity();
 }

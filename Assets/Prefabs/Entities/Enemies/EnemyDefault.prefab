@@ -169,10 +169,13 @@ MonoBehaviour:
         PublicKeyToken=null
     - _typeString: EntityData_GridIndex, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+    - _typeString: EntityData_GridMovement, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
     valueData:
     - rid: 4300669464658051076
     - rid: 4300669464658051077
     - rid: 4300669464658051099
+    - rid: 4300669464658051107
   references:
     version: 2
     RefIds:
@@ -184,3 +187,8 @@ MonoBehaviour:
       type: {class: EntityData_EntityManager, ns: , asm: Assembly-CSharp}
     - rid: 4300669464658051099
       type: {class: EntityData_GridIndex, ns: , asm: Assembly-CSharp}
+    - rid: 4300669464658051107
+      type: {class: EntityData_GridMovement, ns: , asm: Assembly-CSharp}
+      data:
+        _movementCooldown: 2
+        _gridMoveDistance: 1

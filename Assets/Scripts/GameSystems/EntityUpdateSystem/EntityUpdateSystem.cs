@@ -6,6 +6,8 @@ public class EntityUpdateSystem : GameSystem_Base
     [Sirenix.OdinInspector.ShowInInspector]
     IEntityManager _entityManager;
 
+    List<IUpdatableEntity> _updatableEntities = new(100);
+
     public override bool TryInitialize(GameSystems gameSystems)
     {
         if (!base.TryInitialize(gameSystems))
@@ -21,6 +23,7 @@ public class EntityUpdateSystem : GameSystem_Base
     {
         base.Update(gameSystemContext);
 
+        _updatableEntities.Clear();
         var entityIterator = _entityManager.GetEntityIterator();
 
         while (entityIterator.MoveNext())
@@ -35,9 +38,15 @@ public class EntityUpdateSystem : GameSystem_Base
             if (entity is not IUpdatableEntity updatableEntity)
                 continue;
 
-            updatableEntity.UpdateEntity();
+            _updatableEntities.Add(updatableEntity);
+
         }
 
         entityIterator.Reset();
+
+        for (int i = 0; i < _updatableEntities.Count; i++)
+        {
+            _updatableEntities[i].UpdateEntity();
+        }
     }
 }

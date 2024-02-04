@@ -22,6 +22,9 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
     public IEnumerator GetEntityIterator() => Entities.GetEnumerator();
     public bool TryAddEntity(Vector2Int index, IEntity entity)
     {
+        if (!IsInsideLimits(Vector2Int.zero, BoardSize, index))
+            return false;
+
         if (Entities.ContainsKey(index))
             return false;
 
@@ -50,6 +53,12 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
     public bool TryMoveEntity(Vector2Int fromIndex, Vector2Int toIndex)
     {
+        if (!IsInsideLimits(Vector2Int.zero, BoardSize, fromIndex))
+            return false;
+
+        if (!IsInsideLimits(Vector2Int.zero, BoardSize, toIndex))
+            return false;
+
         if (!TryGetEntity(fromIndex, out IEntity fromEntity))
             return false;
 
@@ -67,11 +76,21 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
     public bool TryGetEntity(Vector2Int index, out IEntity entity)
     {
+        entity = null;
+
+        if (!IsInsideLimits(Vector2Int.zero, BoardSize, index))
+            return false;
+
         return Entities.TryGetValue(index, out entity);
     }
 
     public bool TryRemoveEntity(Vector2Int index, out IEntity removedEntity)
     {
+        removedEntity = null;
+
+        if (!IsInsideLimits(Vector2Int.zero, BoardSize, index))
+            return false;
+
         if (!Entities.TryGetValue(index, out removedEntity))
             return false;
 
@@ -95,24 +114,27 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
     #region IGridManager Methods
 
-    public bool TryAddGrid(Vector2Int index, GridBase Grid)
+    public bool TryAddGrid(Vector2Int index, GridBase grid)
     {
+        if (!IsInsideLimits(Vector2Int.zero, BoardSize, index))
+            return false;
+
         if (Grids.ContainsKey(index))
             return false;
 
-        Grids.Add(index, Grid);
+        Grids.Add(index, grid);
 
-        if (Grid.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
+        if (grid.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
         {
             entityData_GameObject.GetGameObject().transform.SetParent(_gridParents);
         }
 
-        if (Grid.TryGetEntityComponent(out EntityData_GridManager entityData_GridManager))
+        if (grid.TryGetEntityComponent(out EntityData_GridManager entityData_GridManager))
         {
             entityData_GridManager.ConnectedGridManager = this;
         }
 
-        if (Grid.TryGetEntityComponent(out EntityData_GridIndex entityData_GridIndex))
+        if (grid.TryGetEntityComponent(out EntityData_GridIndex entityData_GridIndex))
         {
             entityData_GridIndex.AddIndex(index);
         }
@@ -120,13 +142,23 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         return true;
     }
 
-    public bool TryGetGrid(Vector2Int index, out GridBase Grid)
+    public bool TryGetGrid(Vector2Int index, out GridBase grid)
     {
-        return Grids.TryGetValue(index, out Grid);
+        grid = null;
+
+        if (!IsInsideLimits(Vector2Int.zero, BoardSize, index))
+            return false;
+
+        return Grids.TryGetValue(index, out grid);
     }
 
     public bool TryRemoveGrid(Vector2Int index, out GridBase removedGrid)
     {
+        removedGrid = null;
+
+        if (!IsInsideLimits(Vector2Int.zero, BoardSize, index))
+            return false;
+
         if (!Grids.TryGetValue(index, out removedGrid))
             return false;
 
@@ -271,6 +303,11 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         BoardCenter = configBoard.BoardCenter;
     }
 
+
+    bool IsInsideLimits(Vector2Int minIndex, Vector2Int maxIndex, Vector2Int checkIndex)
+    {
+        return checkIndex.x >= minIndex.x && checkIndex.y >= minIndex.y && checkIndex.x < maxIndex.x && checkIndex.y < maxIndex.y;
+    }
 
 
     #region IIndexToPositionProvider Methods
