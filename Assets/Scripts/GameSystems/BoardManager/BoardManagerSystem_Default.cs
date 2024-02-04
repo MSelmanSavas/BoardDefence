@@ -6,13 +6,13 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
     #region IEntityManager Fields
 
     [Sirenix.OdinInspector.ShowInInspector]
-    public Dictionary<Vector2Int, IEntity> Entities { get; private set; }
+    public Dictionary<Vector2Int, IEntity> Entities { get; private set; } = new();
 
     #endregion
 
     #region IGridManager Fields
     [Sirenix.OdinInspector.ShowInInspector]
-    public Dictionary<Vector2Int, GridBase> Grids { get; private set; }
+    public Dictionary<Vector2Int, GridBase> Grids { get; private set; } = new();
 
     #endregion
 
@@ -76,6 +76,7 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
 
     #endregion
 
+    Transform _gridParents;
     public override bool TryInitialize(GameSystems gameSystems)
     {
         if (!base.TryInitialize(gameSystems))

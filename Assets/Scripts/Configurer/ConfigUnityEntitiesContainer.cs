@@ -18,4 +18,13 @@ public class ConfigUnityEntitiesContainer : ConfigBase
 
         return true;
     }
+
+    public bool TryGetUnityEntityData(System.Type entityType, out UnityEntityData unityEntityData)
+    {
+        if (!UnityEntityDatas.TryGetValue(entityType, out unityEntityData))
+            return false;
+
+
+        return true;
+    }
 }
