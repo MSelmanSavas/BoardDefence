@@ -21,5 +21,8 @@ MonoBehaviour:
       keyData:
       - _typeString: GridDefault, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
+      - _typeString: GridBuildable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
       valueData:
       - <Prefab>k__BackingField: {fileID: 3357515801081374207, guid: 2924a21fbd6e8ff439e1db9bf9381075, type: 3}
+      - <Prefab>k__BackingField: {fileID: 0}
