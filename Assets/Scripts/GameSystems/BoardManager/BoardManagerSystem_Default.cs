@@ -36,7 +36,13 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         if (entity.TryGetEntityComponent(out EntityData_EntityManager entityData_EntityManager))
         {
             entityData_EntityManager.ConnectedEntityManager = this;
-        }   
+        }
+
+        if (entity.TryGetEntityComponent(out EntityData_GridIndex entityData_GridIndex))
+        {
+            entityData_GridIndex.AddIndex(index);
+        }
+
 
         Entities.GetEnumerator();
 
@@ -58,6 +64,11 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         if (removedEntity.TryGetEntityComponent(out EntityData_EntityManager entityData_EntityManager))
         {
             entityData_EntityManager.ConnectedEntityManager = null;
+        }
+
+        if (removedEntity.TryGetEntityComponent(out EntityData_GridIndex entityData_GridIndex))
+        {
+            entityData_GridIndex.RemoveIndex(index);
         }
 
         return true;
@@ -86,6 +97,11 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
             entityData_GridManager.ConnectedGridManager = this;
         }
 
+        if (Grid.TryGetEntityComponent(out EntityData_GridIndex entityData_GridIndex))
+        {
+            entityData_GridIndex.AddIndex(index);
+        }
+
         return true;
     }
 
@@ -104,6 +120,11 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
         if (removedGrid.TryGetEntityComponent(out EntityData_GridManager entityData_GridManager))
         {
             entityData_GridManager.ConnectedGridManager = null;
+        }
+
+        if (removedGrid.TryGetEntityComponent(out EntityData_GridIndex entityData_GridIndex))
+        {
+            entityData_GridIndex.RemoveIndex(index);
         }
 
         return true;

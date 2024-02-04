@@ -51,9 +51,12 @@ MonoBehaviour:
         PublicKeyToken=null
     - _typeString: EntityData_GameObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+    - _typeString: EntityData_GridIndex, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
     valueData:
     - rid: 4300669464658051078
     - rid: 4300669464658051079
+    - rid: 4300669464658051100
   references:
     version: 2
     RefIds:
@@ -63,6 +66,8 @@ MonoBehaviour:
       type: {class: EntityData_GameObject, ns: , asm: Assembly-CSharp}
       data:
         _connectedGameObj: {fileID: 1750139228547892426}
+    - rid: 4300669464658051100
+      type: {class: EntityData_GridIndex, ns: , asm: Assembly-CSharp}
 --- !u!1 &1750139229449696945
 GameObject:
   m_ObjectHideFlags: 0
