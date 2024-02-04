@@ -25,6 +25,9 @@ public class Configurer : ScriptableObject
     [SerializeField]
     ConfigLevelDataContainer _configLevelDataContainer;
 
+    [SerializeField]
+    ConfigEnemySpawner _configEnemySpawner = new();
+
     public bool TryGetConfig<T>(out T config) where T : ConfigBase
     {
         config = null;

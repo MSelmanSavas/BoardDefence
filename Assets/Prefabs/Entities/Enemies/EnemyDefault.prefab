@@ -102,8 +102,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1243952585
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 20806bcda2342d0458201b5f5a78e183, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -162,8 +162,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityComponents:
-    keyData: []
-    valueData: []
+    keyData:
+    - _typeString: EntityData_GameObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - _typeString: EntityData_EntityManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    valueData:
+    - rid: 4300669464658051076
+    - rid: 4300669464658051077
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4300669464658051076
+      type: {class: EntityData_GameObject, ns: , asm: Assembly-CSharp}
+      data:
+        _connectedGameObj: {fileID: 8051013401471423517}
+    - rid: 4300669464658051077
+      type: {class: EntityData_EntityManager, ns: , asm: Assembly-CSharp}

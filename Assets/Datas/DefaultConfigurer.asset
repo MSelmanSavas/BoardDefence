@@ -20,6 +20,8 @@ MonoBehaviour:
         PublicKeyToken=null
     - _typeString: ConfigLevelDataContainer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+    - _typeString: ConfigEnemySpawner, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
   _configUnityEntitiesContainer:
     <UnityEntityDatas>k__BackingField:
       keyData:
@@ -45,3 +47,5 @@ MonoBehaviour:
     <BoardCellSize>k__BackingField: {x: 1, y: 1}
   _configLevelDataContainer:
     <LevelDataContainer>k__BackingField: {fileID: 11400000, guid: a8f1efbb617373b46b9dfbb4b3144e2a, type: 2}
+  _configEnemySpawner:
+    <SpawnCooldown>k__BackingField: 2

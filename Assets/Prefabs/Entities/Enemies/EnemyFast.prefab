@@ -46,11 +46,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityComponents:
-    keyData: []
-    valueData: []
+    keyData:
+    - _typeString: EntityData_EntityManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - _typeString: EntityData_GameObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    valueData:
+    - rid: 4300669464658051078
+    - rid: 4300669464658051079
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4300669464658051078
+      type: {class: EntityData_EntityManager, ns: , asm: Assembly-CSharp}
+    - rid: 4300669464658051079
+      type: {class: EntityData_GameObject, ns: , asm: Assembly-CSharp}
+      data:
+        _connectedGameObj: {fileID: 1750139228547892426}
 --- !u!1 &1750139229449696945
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,8 +165,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1243952585
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b6812f0e4b051c24c80b53d18e97036b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
