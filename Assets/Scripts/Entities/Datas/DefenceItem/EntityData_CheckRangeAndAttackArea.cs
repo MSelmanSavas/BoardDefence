@@ -4,10 +4,8 @@ using UsefulDataTypes;
 using UsefulDataTypes.Utils;
 
 [System.Serializable]
-public class EntityData_CheckRangeAndAttack : EntityComponent_Base
+public class EntityData_CheckRangeAndAttackArea : EntityComponent_Base
 {
-    [SerializeField]
-    List<Direction> _directionsToAttack = new();
 
     [SerializeField]
     int _attackRange;
@@ -17,9 +15,6 @@ public class EntityData_CheckRangeAndAttack : EntityComponent_Base
 
     [SerializeField]
     float _attackDamage;
-
-    [SerializeField]
-    bool _multipleDamage = false;
 
     float _currentCooldown;
 
@@ -80,12 +75,17 @@ public class EntityData_CheckRangeAndAttack : EntityComponent_Base
         Vector2Int ownIndex = _gridIndex.GetIndex();
         Vector2Int checkIndex;
 
-        foreach (var direction in _directionsToAttack)
+        Vector2Int minIndex = ownIndex + DirectionUtils.GetVector2IntFromDirection(Direction.DownLeft) * _attackRange;
+        Vector2Int maxIndex = ownIndex + DirectionUtils.GetVector2IntFromDirection(Direction.UpRight) * _attackRange;
+
+        for (int x = minIndex.x; x <= maxIndex.x; x++)
         {
-            for (int i = 1; i <= _attackRange; i++)
+            for (int y = minIndex.y; y <= maxIndex.y; y++)
             {
-                Vector2Int directionToOffset = DirectionUtils.GetVector2IntFromDirection(direction);
-                checkIndex = ownIndex + (directionToOffset * _attackRange);
+                checkIndex = new Vector2Int(x, y);
+
+                if (checkIndex == ownIndex)
+                    continue;
 
                 if (!_entityManager.ConnectedEntityManager.TryGetEntity(checkIndex, out IEntity entity))
                     continue;
@@ -105,14 +105,17 @@ public class EntityData_CheckRangeAndAttack : EntityComponent_Base
         Vector2Int ownIndex = _gridIndex.GetIndex();
         Vector2Int checkIndex;
 
-        bool hasAlreadyDamagedAnyEnemy = false;
+        Vector2Int minIndex = ownIndex + DirectionUtils.GetVector2IntFromDirection(Direction.DownLeft) * _attackRange;
+        Vector2Int maxIndex = ownIndex + DirectionUtils.GetVector2IntFromDirection(Direction.UpRight) * _attackRange;
 
-        foreach (var direction in _directionsToAttack)
+        for (int x = minIndex.x; x <= maxIndex.x; x++)
         {
-            for (int i = 1; i <= _attackRange; i++)
+            for (int y = minIndex.y; y <= maxIndex.y; y++)
             {
-                Vector2Int directionToOffset = DirectionUtils.GetVector2IntFromDirection(direction);
-                checkIndex = ownIndex + (directionToOffset * i);
+                checkIndex = new Vector2Int(x, y);
+
+                if (checkIndex == ownIndex)
+                    continue;
 
                 if (!_entityManager.ConnectedEntityManager.TryGetEntity(checkIndex, out IEntity entity))
                     continue;
@@ -121,15 +124,8 @@ public class EntityData_CheckRangeAndAttack : EntityComponent_Base
                     continue;
 
                 entityData_EnemyHealth.ChangeHealth(-_attackDamage);
-
-                hasAlreadyDamagedAnyEnemy = true;
-
                 Debug.Log($"Attacked to : {entity} with damage : {_attackDamage}");
-                break;
             }
-
-            if (!_multipleDamage && hasAlreadyDamagedAnyEnemy)
-                break;
         }
 
         return true;

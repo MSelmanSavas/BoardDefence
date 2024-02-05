@@ -190,7 +190,7 @@ MonoBehaviour:
     - rid: 4300669491326746641
       type: {class: EntityData_CheckRangeAndAttack, ns: , asm: Assembly-CSharp}
       data:
-        _attackProjectile: {fileID: 0}
         _directionsToAttack: 04000000
         _attackRange: 2
         _attackCooldown: 3
+        _attackDamage: 5
