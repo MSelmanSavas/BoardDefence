@@ -53,10 +53,13 @@ MonoBehaviour:
         PublicKeyToken=null
     - _typeString: EntityData_EntityManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+    - _typeString: EntityData_CheckRangeAndAttack, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     valueData:
     - rid: 4300669491326746633
     - rid: 4300669491326746634
     - rid: 4300669491326746635
+    - rid: 4300669491326746640
   references:
     version: 2
     RefIds:
@@ -68,6 +71,13 @@ MonoBehaviour:
       type: {class: EntityData_GridIndex, ns: , asm: Assembly-CSharp}
     - rid: 4300669491326746635
       type: {class: EntityData_EntityManager, ns: , asm: Assembly-CSharp}
+    - rid: 4300669491326746640
+      type: {class: EntityData_CheckRangeAndAttack, ns: , asm: Assembly-CSharp}
+      data:
+        _attackProjectile: {fileID: 0}
+        _directionsToAttack: 0100000002000000040000000300000005000000060000000700000008000000
+        _attackRange: 1
+        _attackCooldown: 5
 --- !u!1 &1333023141333329513
 GameObject:
   m_ObjectHideFlags: 0
