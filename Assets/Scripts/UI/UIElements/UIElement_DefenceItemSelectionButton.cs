@@ -78,13 +78,20 @@ public class UIElement_DefenceItemSelectionButton : UIElement_Base
         defenceItemPlacementSystem.OnDefenceItemSpawned += OnDefenceItemSpawned;
     }
 
-    protected override void OnDisableInternal()
+    public override void DeInitialize()
     {
+        base.DeInitialize();
+        
         if (_defenceItemPlacementSystem != null)
         {
             _defenceItemPlacementSystem.OnDefenceItemSelectionChange -= OnDefenceItemSelectionChange;
             _defenceItemPlacementSystem.OnDefenceItemSpawned -= OnDefenceItemSpawned;
         }
+    }
+
+    protected override void OnDisableInternal()
+    {
+        DeInitialize();
     }
 
     void TrySelectDefenceItem(DefenceItemPlacementSystem defenceItemPlacementSystem)

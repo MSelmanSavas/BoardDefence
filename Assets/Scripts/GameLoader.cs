@@ -45,7 +45,7 @@ public class GameLoader : MonoBehaviour
         gameSystems.TryAddGameSystemByTypeImmediately<DefenceItemPlacementSystem>(autoInitialize: false);
 
         gameSystems.Initialize();
-        
+
 
         if (RefBook.TryGet(out MainCanvas_Gameplay mainCanvas_Gameplay))
             mainCanvas_Gameplay.InitializeGameplayUIElements();
@@ -53,6 +53,9 @@ public class GameLoader : MonoBehaviour
 
     public void DeInitializeGameLoop()
     {
+        if (RefBook.TryGet(out MainCanvas_Gameplay mainCanvas_Gameplay))
+            mainCanvas_Gameplay.DeInitializeGameplayUIElements();
+
         if (RefBook.TryGet(out GameSystems gameSystems))
         {
             gameSystems.DeInitialize();

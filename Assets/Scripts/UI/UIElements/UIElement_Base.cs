@@ -18,4 +18,5 @@ public abstract class UIElement_Base : MonoBehaviour
     protected virtual void OnDisableInternal() { }
 
     public virtual void Initialize() { }
+    public virtual void DeInitialize() { }
 }

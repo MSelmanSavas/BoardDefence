@@ -29,6 +29,17 @@ public class MainCanvas_Gameplay : MonoBehaviour
         }
     }
 
+     public void DeInitializeGameplayUIElements()
+    {
+        foreach (var uiElement in GameplayUIElements)
+        {
+            if (uiElement == null)
+                continue;
+
+            uiElement.Initialize();
+        }
+    }
+
 #if UNITY_EDITOR
     [Sirenix.OdinInspector.Button]
     void FindAllUIElementsOnChildren()

@@ -217,7 +217,7 @@ public class RefBook : SingletonMonoBehaviour<RefBook>
 
     protected bool RemoveAsInternal<T>(object obj)
     {
-         if (obj is not T requestedType)
+        if (obj is not T requestedType)
             return false;
 
         lastRemovedType = typeof(T);
@@ -234,7 +234,7 @@ public class RefBook : SingletonMonoBehaviour<RefBook>
             return false;
         }
 
-        References[obj.GetType()].Remove(obj);
+        References[lastRemovedType].Remove(obj);
         return true;
     }
 

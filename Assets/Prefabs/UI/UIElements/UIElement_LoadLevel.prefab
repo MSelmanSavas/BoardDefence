@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58be54e5a84d4243a60da1ed59b45c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loadLevelButton: {fileID: 5620170089101231790}
 --- !u!222 &5706859991775901238
 CanvasRenderer:
   m_ObjectHideFlags: 0
