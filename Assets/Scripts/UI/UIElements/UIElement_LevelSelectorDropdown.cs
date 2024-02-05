@@ -9,6 +9,8 @@ public class UIElement_LevelSelectorDropdown : UIElement_Base
     [SerializeField]
     TMP_Dropdown _levelSelectionDropdown;
 
+    int _lastSelectedValue = 0;
+
     ConfigLevelDataContainer _configLevelDataContainer;
     public override void Initialize()
     {
@@ -43,6 +45,8 @@ public class UIElement_LevelSelectorDropdown : UIElement_Base
 
         _levelSelectionDropdown.AddOptions(levelNames);
 
+        _levelSelectionDropdown.value = _lastSelectedValue;
+
         ListPool<string>.Release(levelNames);
 
         _levelSelectionDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
@@ -65,5 +69,7 @@ public class UIElement_LevelSelectorDropdown : UIElement_Base
         {
             playerData_CurrentLevel.CurrentLevel = selectionIndex;
         }
+
+        _lastSelectedValue = selectionIndex;
     }
 }
