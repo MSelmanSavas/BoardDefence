@@ -137,26 +137,26 @@ public class DefenceItemPlacementSystem : GameSystem_Base
             DefenceItemToBeSpawnedData randomData = _defenceItemsToBeSpawnDatas[i];
 
             if (randomData.ToSpawnAmount <= 0)
-                return;
+                continue;
 
             if (!_entitesContainer.TryGetUnityEntityData(randomData.TypeToSpawn, out UnityEntityData data))
-                return;
+                continue;
 
             if (data.Prefab == null)
-                return;
+                continue;
 
             var defenceItemGO = GameObject.Instantiate(data.Prefab);
 
             if (!defenceItemGO.TryGetComponent(out IEntity defenceItemEntity))
             {
                 GameObject.Destroy(defenceItemGO);
-                return;
+                continue;
             }
 
             if (!_entityManager.TryAddEntity(index, defenceItemEntity))
             {
                 GameObject.Destroy(defenceItemGO);
-                return;
+                continue;
             }
 
             if (defenceItemEntity.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
