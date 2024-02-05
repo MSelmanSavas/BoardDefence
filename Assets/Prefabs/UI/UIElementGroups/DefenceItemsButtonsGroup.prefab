@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5713394605457310004}
   - component: {fileID: 8493551193695607664}
   m_Layer: 5
-  m_Name: DefenceItemsButtonsParent
+  m_Name: DefenceItemsButtonsGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

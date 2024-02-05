@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelDataSystem : GameSystem_Base, ILevelDataProvider
+public class DefaultLevelDataProviderSystem : GameSystem_Base, ILevelDataProvider
 {
     int _currentLevel;
     int _maxLevel;
@@ -13,23 +13,25 @@ public class LevelDataSystem : GameSystem_Base, ILevelDataProvider
         if (!base.TryInitialize(gameSystems))
             return false;
 
-
         if (!RefBook.TryGet(out Configurer configurer))
         {
-            Logger.LogErrorWithTag(LogCategory.LevelData, $"Cannot find {nameof(Configurer)} from service provider! Cannot initialize {nameof(LevelDataSystem)}!");
+            Logger.LogErrorWithTag(LogCategory.LevelData, $"Cannot find {nameof(Configurer)} from service provider! Cannot initialize {nameof(DefaultLevelDataProviderSystem)}!");
             return false;
         }
 
         if (!configurer.TryGetConfig(out ConfigLevelDataContainer levelDataContainerConfig))
         {
-            Logger.LogErrorWithTag(LogCategory.LevelData, $"Cannot find {nameof(ConfigLevelDataContainer)} from {nameof(Configurer)}! Cannot initialize {nameof(LevelDataSystem)}!");
+            Logger.LogErrorWithTag(LogCategory.LevelData, $"Cannot find {nameof(ConfigLevelDataContainer)} from {nameof(Configurer)}! Cannot initialize {nameof(DefaultLevelDataProviderSystem)}!");
             return false;
         }
 
+        if(PlayerDataSystem.Instance.GetPlayerData(out PlayerData_CurrentLevel playerData_CurrentLevel))
+            _currentLevel = playerData_CurrentLevel.CurrentLevel;
+
         _levelDataContainer = levelDataContainerConfig.LevelDataContainer;
+        _maxLevel = _levelDataContainer.LevelDatas.Count;
 
         RefBook.AddAs<ILevelDataProvider>(this);
-
         return true;
     }
 

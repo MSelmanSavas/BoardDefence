@@ -33,6 +33,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3698416723438032076}
+  - {fileID: 5942799238206857287}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -118,6 +119,48 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
+--- !u!1001 &8621938446051646426
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3698416723432573246}
+    m_Modifications:
+    - target: {fileID: 1022874918673172488, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+      propertyPath: m_Name
+      value: LevelChangeButtonsGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728714349324090269, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728714349324090269, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728714349324090269, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728714349324090269, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728714349324090269, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728714349324090269, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+--- !u!224 &5942799238206857287 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2728714349324090269, guid: 2cb29ea827ef4e44e929bf50c0c260de, type: 3}
+  m_PrefabInstance: {fileID: 8621938446051646426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8942288990271821304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5713394605457310005, guid: 88e0575a8b44dfd4cb7b6dbe45675413, type: 3}
       propertyPath: m_Name
-      value: TowerButtonsParent
+      value: DefenceItemsButtonsGroup
       objectReference: {fileID: 0}
     - target: {fileID: 7908081956676280284, guid: 88e0575a8b44dfd4cb7b6dbe45675413, type: 3}
       propertyPath: m_AnchorMax.y

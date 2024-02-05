@@ -36,15 +36,16 @@ public class GameLoader : MonoBehaviour
         };
 
         GameSystems gameSystems = gameSystemsObj.AddComponent<GameSystems>();
-        gameSystems.TryAddGameSystemByTypeImmediately<LevelDataSystem>(autoInitialize: false);
+        gameSystems.TryAddGameSystemByTypeImmediately<DefaultLevelDataProviderSystem>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<BoardManagerSystem_Default>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<BoardLoader_Default>(autoInitialize: false);
-        gameSystems.TryAddGameSystemByTypeImmediately<LevelDataSystem>(autoInitialize: false);
+        gameSystems.TryAddGameSystemByTypeImmediately<DefaultLevelDataProviderSystem>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<EnemySpawnerSystem>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<EntityUpdateSystem>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<DefenceItemPlacementSystem>(autoInitialize: false);
 
         gameSystems.Initialize();
+        
 
         if (RefBook.TryGet(out MainCanvas_Gameplay mainCanvas_Gameplay))
             mainCanvas_Gameplay.InitializeGameplayUIElements();
