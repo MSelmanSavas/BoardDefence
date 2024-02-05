@@ -326,10 +326,14 @@ public class BoardManagerSystem_Default : GameSystem_Base, IGridManager, IEntity
     {
         Vector2 currentPosition = position - BoardOrigin;
 
-        float xIndex = currentPosition.x / BoardSize.x;
-        float yIndex = currentPosition.y / BoardSize.y;
+        float xIndex = currentPosition.x / BoardCellSize.x;
+        float yIndex = currentPosition.y / BoardCellSize.y;
 
-        return new Vector2Int((int)xIndex, (int)yIndex);
+        return new Vector2Int()
+        {
+            x = Mathf.RoundToInt(xIndex),
+            y = Mathf.RoundToInt(yIndex),
+        };
     }
 
     #endregion
