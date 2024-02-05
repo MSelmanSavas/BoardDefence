@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UsefulExtensions.List;
 
 public class DefenceItemPlacementSystem : GameSystem_Base
 {
@@ -126,8 +127,44 @@ public class DefenceItemPlacementSystem : GameSystem_Base
         if (foundGrid is not GridBuildable gridBuildable)
             return;
 
-        if (_entityManager.TryGetEntity(index, out IEntity entity))
+        if (_entityManager.TryGetEntity(index, out IEntity foundEntity))
             return;
 
+        _defenceItemsToBeSpawnDatas.ShuffleList();
+
+        for (int i = 0; i < _defenceItemsToBeSpawnDatas.Count; i++)
+        {
+            DefenceItemToBeSpawnedData randomData = _defenceItemsToBeSpawnDatas[i];
+
+            if (randomData.ToSpawnAmount <= 0)
+                return;
+
+            if (!_entitesContainer.TryGetUnityEntityData(randomData.TypeToSpawn, out UnityEntityData data))
+                return;
+
+            if (data.Prefab == null)
+                return;
+
+            var defenceItemGO = GameObject.Instantiate(data.Prefab);
+
+            if (!defenceItemGO.TryGetComponent(out IEntity defenceItemEntity))
+            {
+                GameObject.Destroy(defenceItemGO);
+                return;
+            }
+
+            if (!_entityManager.TryAddEntity(index, defenceItemEntity))
+            {
+                GameObject.Destroy(defenceItemGO);
+                return;
+            }
+
+            if (defenceItemEntity.TryGetEntityComponent(out EntityData_GameObject entityData_GameObject))
+            {
+                entityData_GameObject.GetGameObject().transform.position = _indexToPositionProvider.GetPosition(index);
+            }
+
+            randomData.ToSpawnAmount--;
+        }
     }
 }
