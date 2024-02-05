@@ -55,11 +55,14 @@ MonoBehaviour:
         PublicKeyToken=null
     - _typeString: EntityData_GridMovement, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+    - _typeString: EntityData_EnemyHealth, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
     valueData:
     - rid: 4300669464658051078
     - rid: 4300669464658051079
     - rid: 4300669464658051100
     - rid: 4300669464658051108
+    - rid: 4300669491326746625
   references:
     version: 2
     RefIds:
@@ -76,6 +79,12 @@ MonoBehaviour:
       data:
         _movementCooldown: 1
         _gridMoveDistance: 1
+    - rid: 4300669491326746625
+      type: {class: EntityData_EnemyHealth, ns: , asm: Assembly-CSharp}
+      data:
+        <CurrentHealth>k__BackingField: 0
+        <MaxHealth>k__BackingField: 5
+        <IsAlreadyDead>k__BackingField: 0
 --- !u!1 &1750139229449696945
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,6 +42,7 @@ public class GameLoader : MonoBehaviour
         gameSystems.TryAddGameSystemByTypeImmediately<LevelDataSystem>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<EnemySpawnerSystem>(autoInitialize: false);
         gameSystems.TryAddGameSystemByTypeImmediately<EntityUpdateSystem>(autoInitialize: false);
+        gameSystems.TryAddGameSystemByTypeImmediately<TowerPlacementSystem>(autoInitialize: false);
 
         gameSystems.Initialize();
     }
