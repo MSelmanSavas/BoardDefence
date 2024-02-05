@@ -6,4 +6,5 @@ public enum LogCategory
     BoardManager = 2,
     BoardLoader = 3,
     LevelData = 4,
+    UI = 5,
 }

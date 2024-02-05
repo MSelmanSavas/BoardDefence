@@ -87,8 +87,6 @@ public class EntityData_CheckRangeAndAttack : EntityComponent_Base
                 Vector2Int directionToOffset = DirectionUtils.GetVector2IntFromDirection(direction);
                 checkIndex = ownIndex + (directionToOffset * i);
 
-                Debug.LogError(checkIndex);
-
                 if (!_entityManager.ConnectedEntityManager.TryGetEntity(checkIndex, out IEntity entity))
                     continue;
 
