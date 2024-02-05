@@ -22,7 +22,22 @@ public class DefenceItemPlacementSystem : GameSystem_Base
 #if ODIN_INSPECTOR
     [Sirenix.OdinInspector.ShowInInspector]
 #endif
+    IEntityManager _entityManager;
+
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.ShowInInspector]
+#endif
     IIndexToPositionProvider _indexToPositionProvider;
+
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.ShowInInspector]
+#endif
+    IPositionToIndexProvider _positionToIndexProvider;
+
+#if ODIN_INSPECTOR
+    [Sirenix.OdinInspector.ShowInInspector]
+#endif
+    Camera _mainCamera;
 
     [Sirenix.OdinInspector.ShowInInspector]
     List<DefenceItemToBeSpawnedData> _defenceItemsToBeSpawnDatas = new();
@@ -44,7 +59,13 @@ public class DefenceItemPlacementSystem : GameSystem_Base
         if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _gridManager))
             return false;
 
+        if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _entityManager))
+            return false;
+
         if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _indexToPositionProvider))
+            return false;
+
+        if (!gameSystems.TryGetGameSystemByTypeWithoutConstraint(out _positionToIndexProvider))
             return false;
 
         if (!RefBook.TryGet(out Configurer configurer))
@@ -54,7 +75,10 @@ public class DefenceItemPlacementSystem : GameSystem_Base
             return false;
 
         RefBook.Add(this);
+
         LoadTowerSpawnDatas(_levelDataProvider);
+
+        _mainCamera = Camera.main;
 
         return true;
     }
@@ -86,7 +110,24 @@ public class DefenceItemPlacementSystem : GameSystem_Base
         }
     }
 
-    private void Update()
+    public override void Update(RuntimeGameSystemContext gameSystemContext)
     {
+        base.Update(gameSystemContext);
+
+        if (!Input.GetKeyDown(KeyCode.Mouse0))
+            return;
+
+        Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2Int index = _positionToIndexProvider.GetIndex(mousePosition);
+
+        if (!_gridManager.TryGetGrid(index, out GridBase foundGrid))
+            return;
+
+        if (foundGrid is not GridBuildable gridBuildable)
+            return;
+
+        if (_entityManager.TryGetEntity(index, out IEntity entity))
+            return;
+
     }
 }
