@@ -155,6 +155,8 @@ public class DefenceItemPlacementSystem : GameSystem_Base
         if (_entityManager.TryGetEntity(index, out IEntity foundEntity))
             return false;
 
+        suitableIndex = index;
+
         return true;
     }
 
