@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class EntityData_GameObject : EntityComponent_Base
 {
     [SerializeField] GameObject _connectedGameObj;
