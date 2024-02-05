@@ -85,12 +85,20 @@ public class EntityData_CheckRangeAndAttack : EntityComponent_Base
             for (int i = 1; i <= _attackRange; i++)
             {
                 Vector2Int directionToOffset = DirectionUtils.GetVector2IntFromDirection(direction);
-                checkIndex = ownIndex + (directionToOffset * _attackRange);
+                checkIndex = ownIndex + (directionToOffset * i);
+
+                Debug.LogError(checkIndex);
 
                 if (!_entityManager.ConnectedEntityManager.TryGetEntity(checkIndex, out IEntity entity))
                     continue;
 
                 if (entity is not EnemyBase enemyBase)
+                    continue;
+
+                if (!entity.TryGetEntityComponent(out EntityData_EnemyState entityData_EnemyState))
+                    continue;
+
+                if (!entityData_EnemyState.CanBeDamaged)
                     continue;
 
                 return true;

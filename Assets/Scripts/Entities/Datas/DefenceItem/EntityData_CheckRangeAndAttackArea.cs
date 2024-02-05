@@ -93,6 +93,12 @@ public class EntityData_CheckRangeAndAttackArea : EntityComponent_Base
                 if (entity is not EnemyBase enemyBase)
                     continue;
 
+                if (!entity.TryGetEntityComponent(out EntityData_EnemyState entityData_EnemyState))
+                    continue;
+
+                if (!entityData_EnemyState.CanBeDamaged)
+                    continue;
+
                 return true;
             }
         }
