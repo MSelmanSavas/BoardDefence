@@ -173,12 +173,15 @@ MonoBehaviour:
         PublicKeyToken=null
     - _typeString: EntityData_EnemyHealth, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+    - _typeString: EntityData_EnemyState, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
     valueData:
     - rid: 4300669464658051076
     - rid: 4300669464658051077
     - rid: 4300669464658051099
     - rid: 4300669464658051107
     - rid: 4300669491326746624
+    - rid: 4300669491326746627
   references:
     version: 2
     RefIds:
@@ -201,3 +204,8 @@ MonoBehaviour:
         <CurrentHealth>k__BackingField: 0
         <MaxHealth>k__BackingField: 3
         <IsAlreadyDead>k__BackingField: 0
+    - rid: 4300669491326746627
+      type: {class: EntityData_EnemyState, ns: , asm: Assembly-CSharp}
+      data:
+        IsMoving: 0
+        CanBeDamaged: 1

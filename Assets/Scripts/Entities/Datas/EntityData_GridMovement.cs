@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [System.Serializable]
 public class EntityData_GridMovement : EntityComponent_Base
@@ -9,6 +10,7 @@ public class EntityData_GridMovement : EntityComponent_Base
     EntityData_EntityManager _entityManager;
     EntityData_GridIndex _entityGridIndex;
     EntityData_GameObject _entityGameObject;
+    EntityData_EnemyState _entityEnemyState;
 
     [SerializeField]
     float _movementCooldown = 2f;
@@ -31,6 +33,9 @@ public class EntityData_GridMovement : EntityComponent_Base
         if (!entity.TryGetEntityComponent(out _entityGameObject))
             return false;
 
+        if (!entity.TryGetEntityComponent(out _entityEnemyState))
+            return false;
+
         if (entity is not IUpdatableEntity updatableEntity)
             return false;
 
@@ -41,6 +46,9 @@ public class EntityData_GridMovement : EntityComponent_Base
 
     void OnEntityUpdate()
     {
+        if (CheckIsMoving())
+            return;
+
         if (!TryCheckCoolDown())
             return;
 
@@ -48,6 +56,11 @@ public class EntityData_GridMovement : EntityComponent_Base
             return;
 
         ResetCooldown();
+    }
+
+    bool CheckIsMoving()
+    {
+        return _entityEnemyState.IsMoving;
     }
 
     bool TryCheckCoolDown()
@@ -82,7 +95,18 @@ public class EntityData_GridMovement : EntityComponent_Base
                 continue;
             }
 
-            _entityGameObject.GetGameObject().transform.position = _indexToPositionProvider.GetPosition(moveToIndex);
+            _entityEnemyState.IsMoving = true;
+            _entityEnemyState.CanBeDamaged = false;
+
+            Vector2 moveToPosition = _indexToPositionProvider.GetPosition(moveToIndex);
+
+            _entityGameObject.GetGameObject().transform.DOMove(moveToPosition, 1.5f).OnComplete(() =>
+            {
+                _entityEnemyState.IsMoving = false;
+                _entityEnemyState.CanBeDamaged = true;
+
+            });
+
             return true;
         }
 
