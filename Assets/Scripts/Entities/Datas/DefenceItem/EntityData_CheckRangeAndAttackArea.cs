@@ -6,6 +6,8 @@ using UsefulDataTypes.Utils;
 [System.Serializable]
 public class EntityData_CheckRangeAndAttackArea : EntityComponent_Base
 {
+    [SerializeField]
+    ParticleSystem _particleSystemToPlayOnAttack;
 
     [SerializeField]
     int _attackRange;
@@ -133,6 +135,8 @@ public class EntityData_CheckRangeAndAttackArea : EntityComponent_Base
                 Debug.Log($"Attacked to : {entity} with damage : {_attackDamage}");
             }
         }
+
+        _particleSystemToPlayOnAttack?.Play();
 
         return true;
     }

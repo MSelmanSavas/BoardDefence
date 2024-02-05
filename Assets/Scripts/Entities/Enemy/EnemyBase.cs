@@ -1,7 +1,11 @@
 using System;
+using UnityEngine;
 
 public abstract class EnemyBase : UnityEntity_Base, IUpdatableEntity
 {
+    [SerializeField]
+    ParticleSystem _onGetDamagedParticleSystem;
+
     public Action OnUpdate { get; set; }
 
     void IUpdatableEntity.UpdateEntity()
@@ -41,5 +45,6 @@ public abstract class EnemyBase : UnityEntity_Base, IUpdatableEntity
 
     void OnHealthChange(float previousHealth, float currentHealth)
     {
+        _onGetDamagedParticleSystem?.Play();
     }
 }

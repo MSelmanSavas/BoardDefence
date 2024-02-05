@@ -7,6 +7,9 @@ using UsefulDataTypes.Utils;
 public class EntityData_CheckRangeAndAttack : EntityComponent_Base
 {
     [SerializeField]
+    ParticleSystem _particleSystemToPlayOnAttack;
+
+    [SerializeField]
     List<Direction> _directionsToAttack = new();
 
     [SerializeField]
@@ -137,6 +140,8 @@ public class EntityData_CheckRangeAndAttack : EntityComponent_Base
             if (!_multipleDamage && hasAlreadyDamagedAnyEnemy)
                 break;
         }
+
+        _particleSystemToPlayOnAttack?.Play();
 
         return true;
     }
